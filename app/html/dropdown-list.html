@@ -1,0 +1,4 @@
+<li class='dropdown-header' ng-bind="subMenuSet.title"></li>
+<li ng-repeat="subMenu in subMenuSet.list" ng-class="{'active':route==subMenu.menuUrl.substr(1)}">
+  <a href="{{subMenu.menuUrl||'javascript:;'}}" ng-bind="subMenu.menuName"></a>
+</li>

@@ -1,0 +1,326 @@
+﻿html {
+  min-height: 100%
+}
+body {
+  min-height: 100%;
+  background: url(../img/bg-login.jpg) center no-repeat;
+  background-size: 100% 100%;
+  font-family: Microsoft YaHei;
+}
+
+/*登录*/
+
+.login-wrap .wrapper {
+  box-sizing: content-box;
+  padding: 40px 20px 20px;
+  background: rgba(255, 255, 255, .7)
+}
+.login-wrap form {
+  margin-top: 20px
+}
+.login-wrap .name {
+  margin-top: 10;
+  font-size: 24px
+}
+.login-wrap .logo-icon {
+  background: 0 0!important
+}
+.login-wrap .logo {
+  display: block;
+  width: 250px;
+  margin: 0 auto
+}
+.login-wrap .checkbox {
+  display: inline;
+  vertical-align: middle;
+  line-height: 33px;
+  cursor: pointer
+}
+.login-wrap .checkbox input {
+  float: none;
+  margin: 0;
+  vertical-align: middle
+}
+.login-wrap .checkbox span {
+  vertical-align: middle;
+}
+.login-btn {
+  float: right;
+  width: 100px
+}
+.forget-password {
+  display: block;
+  margin-top: 10px
+}
+.login-wrap .form-group {
+  height: 34px;
+}
+.form-control.short {
+  display: inline;
+  width: 200px;
+  vertical-align: middle;
+}
+.checkcode {
+  float: right;
+  height: 34px;
+  border-radius: 5px;
+}
+.shake {
+  animation: shake .3s
+}
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0)
+  }
+  10%, 50%, 90% {
+    transform: translateX(-5px)
+  }
+  30%, 70% {
+    transform: translateX(5px)
+  }
+}
+.navbar {
+  margin: 0 20px;
+  border-radius: 0 0 10px 10px;
+  padding: 5px;
+  background: #fff
+}
+.home-logo {
+  padding: 0;
+}
+.home-logo img {
+  height: 100%;
+  border-radius: 10px
+}
+#wrapper {
+  bottom: 10px;
+  background: #fff
+}
+.message .dropdown-menu {
+  left: 10px;
+  min-width: 85px
+}
+.user .dropdown-menu {
+  left: 50%;
+  min-width: 75px;
+  margin-left: -40px;
+}
+.dropdown:hover .dropdown-menu {
+  display: block
+}
+#sidebar ul#dock li.launcher {
+  list-style: none;
+  cursor: pointer;
+  margin-top: 0;
+  padding: 20px 0;
+}
+#sidebar ul#dock li.launcher ul.dropdown-menu {
+  margin-left: 80px;
+  border-left: 5px solid #fff;
+  border-top: none;
+  border-bottom: none
+}
+#tools #breadcrumb a {
+  color: inherit
+}
+.btn-blue, .btn-blue:active, .btn-blue:focus, .btn-blue:hover {
+  border-color: #46b8da;
+  background: #5bc0de;
+  color: #fff
+}
+.table-wrap {
+  min-height: 408px
+}
+.table-wrap table {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd
+}
+.table>thead>tr>th {
+  border: none;
+  background: #1abc9c;
+  font-weight: 400;
+  color: #fff
+}
+.table td {
+  border: 1px solid #ddd
+}
+.grid .panel-footer {
+  overflow: hidden;
+  padding: 10px;
+}
+.grid .panel-footer .pagination {
+  float: right;
+  margin-right: 20px;
+}
+.frame-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .5)
+}
+.frame {
+  width: 660px;
+  min-height: 200px;
+  margin: 100px auto 0;
+  border-radius: 20px;
+  background: #fff
+}
+.frame .form-group {
+  overflow: hidden
+}
+.frame .left {
+  float: left;
+  width: 120px;
+  padding-right: 20px;
+  text-align: right;
+  line-height: 34px
+}
+.form-actions, .time-input {
+  text-align: center
+}
+.frame .right {
+  margin-left: 120px
+}
+.time-input {
+  width: 40px;
+  padding: 0;
+}
+.work-time .time-input {
+  display: inline-block
+}
+.work-time label {
+  margin-left: 50px
+}
+.form-actions a.btn {
+  margin-left: 20px;
+}
+.product-type .right label {
+  margin-right: 20px;
+  margin-bottom: 0;
+  line-height: 34px
+}
+.product-type .right input, .product-type .right span {
+  margin-top: 0;
+  vertical-align: middle
+}
+.scan-info {
+  width: 100%
+}
+.company-left, .page-block {
+  float: left;
+  width: 50%
+}
+.scan-info td {
+  border: 1px solid #ddd;
+  line-height: 2em
+}
+.scan-info td:nth-child(1) {
+  padding-right: 20px;
+  text-align: right;
+  font-weight: 700;
+}
+.scan-info td:nth-child(2) {
+  padding-left: 20px
+}
+.company-right {
+  margin-left: 50%
+}
+.page-header {
+  margin: 20px 0;
+  padding-bottom: 0;
+  font-size: 18px;
+}
+#sidebar {
+  z-index: 3;
+}
+.page-block .title {
+  font-size: 16px
+}
+.page-block .info {
+  font-size: 14px;
+  text-indent: 10px;
+}
+.chart canvas {
+  width: 100%;
+  max-width: 200px;
+}
+
+/*菜单*/
+
+table .join {
+  background: url(../img/join.png) no-repeat 10px center;
+  text-indent: 25px;
+}
+table .last {
+  background: url(../img/last.png) no-repeat 10px center;
+  text-indent: 25px;
+}
+i.big {
+  font-size: 26px;
+  vertical-align: middle;
+}
+.table-wrap .icon {
+  font-size: 18px;
+}
+i.red {
+  display: inline;
+  font-size: 14px;
+  color: red;
+  font-style: normal;
+}
+.menu-table {
+  width: 100%;
+}
+.menu-table th, .menu-table td {
+  padding: 5px 0;
+  border: 1px solid #dddddd;
+  text-indent: 5px;
+}
+.menu-table label {
+  margin-bottom: 0;
+}
+.menu-table span, .menu-table input {
+  margin: 0;
+  vertical-align: middle;
+}
+.serialNumber select.short {
+  width: 120px;
+}
+.serialNumber input {
+  display: inline;
+  width: 120px;
+}
+.online {
+  color: green;
+  font-weight: bold;
+}
+.offline {
+  color: gray;
+}
+.clear-line {
+  clear: both;
+  height: 1px;
+}
+.bottom input {
+  display: inline;
+  width: 220px;
+}
+.inline {
+  display: inline;
+  width: 150px;
+  vertical-align: middle;
+}
+
+/*去除input默认样式*/
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

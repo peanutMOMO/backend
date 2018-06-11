@@ -1,0 +1,14 @@
+<tr ng-repeat="menu in menus">
+  <td width="80px">
+    <label>
+      <input type="checkbox" value="menu.menuId" ng-model="checkBox.value1">
+      <span ng-bind="menu.menuName"></span>
+    </label>
+  </td>
+  <td>
+    <label ng-repeat="subMenu in menu.subMenu">
+      <input type="checkbox" value="subMenu.menuId">
+      <span ng-bind="subMenu.menuName"></span> &emsp;
+    </label>
+  </td>
+</tr>

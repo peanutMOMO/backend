@@ -1,0 +1,16 @@
+<div class='panel-footer'>
+  <div class='pull-right' ng-bind="'第'+pageCur+'/'+pageTotal+'页，共'+resultTotal+'条'"></div>
+  <ul class='pagination pagination-sm'>
+    <li><a href='javascript:;' ng-click="request(1)">首页</a></li>
+    <li ng-class="{'invisible':pageCur==1}">
+      <a href='javascript:;' ng-click="request(pageCur - 1)">«</a>
+    </li>
+    <li ng-class="{'active':pageNumber==pageCur}" ng-repeat="pageNumber in pageNumbers">
+      <a href='javascript:;' ng-click="request(pageNumber)" ng-bind="pageNumber"></a>
+    </li>
+    <li ng-class="{'invisible':pageCur==pageTotal}">
+      <a href="javascript:;" ng-click="request(pageCur + 1)">»</a>
+    </li>
+    <li><a href='javascript:;' ng-click="request(pageTotal)">末页</a></li>
+  </ul>
+</div>

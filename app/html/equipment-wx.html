@@ -1,0 +1,183 @@
+<!-- 后台离职 不做了 -->
+<app-header></app-header>
+<div id='wrapper'>
+  <sidebar></sidebar>
+  <sitemap></sitemap>
+  <!-- Content -->
+  <div id='content'>
+    <div class='panel panel-default grid'>
+      <div class='panel-heading'>
+        <i class='icon-table'></i> 我联科技AP设备信息
+      </div>
+      <div class='panel-body'>
+        <div class='row'>
+          <div class='col-md-2'>
+            <!-- 后台不给改接口没有 -->
+            <!-- <button class="btn btn-info" ng-click="openAdd()">添加设备</button> -->
+          </div>
+          <form class="col-md-10">
+            <span>MAC：</span>
+            <input class='form-control inline' type='text' ng-model="search.mac">&emsp;
+            <span>公司：</span>
+            <input class='form-control inline' type='text' ng-model="search.cpName">&emsp;
+            <span>状态：</span>
+            <select class='form-control inline' ng-model="search.zt">
+              <option value="">所有状态</option>
+              <option value="0">在线</option>
+              <option value="1">离线</option>
+            </select>&emsp;
+            <button class='btn btn-info' type='submit' ng-click="getDevices(1)">查询</button>
+          </form>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class='table'>
+          <thead>
+            <tr>
+              <th width="5%">序号</th>
+              <th width="5%">ID</th>
+              <th width="20%">名称</th>
+              <th width="10%">MAC</th>
+              <th width="20%">公司</th>
+              <th width="5%">状态</th>
+              <!-- 后台不给接口没有 -->
+              <!-- <th width="10%" class='actions'>操作</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="device in devices">
+              <td ng-bind="(pageCur-1)*10+$index+1"></td>
+              <td ng-bind="device.id"></td>
+              <td ng-bind="device.sbmc"></td>
+              <td ng-bind="device.mac"></td>
+              <td ng-bind="device.cpName"></td>
+              <td ng-bind="device.zt==0?'在线':'离线'" ng-class="device.zt==0?'online':'offline'"></td>
+              <!-- 后台不给接口没有 -->
+              <!-- <td class='action'>
+                <a class='btn btn-success' data-toggle='tooltip' href='javascript:;' ng-click="scan=true">
+                  <i class='icon-zoom-in'></i>
+                </a>
+                <a class='btn btn-info' href='javascript:;' ng-click="openEdit(device.id)">
+                  <i class='icon-edit'></i>
+                </a>
+                <a class='btn btn-danger' href='javascript:;' ng-click="delete(device.id)">
+                  <i class='icon-trash'></i>
+                </a>
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <page-list page-cur="pageCur" page-total="pageTotal" page-numbers="pageNumbers" result-total="totalResult" request="getDevices"></page-list>
+    </div>
+  </div>
+</div>
+<div class="frame-wrap" ng-show="form.show">
+  <div class="frame">
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <i class='icon-edit icon-large'></i> 我联无限
+        <a href="javascript:;" class="close" ng-click="form.show=false">×</a>
+      </div>
+      <div class='panel-body'>
+        <form>
+          <fieldset>
+            <legend>{{form.title}}</legend>
+            <div class='form-group'>
+              <div class="left">
+                <label class='control-label'>设备ID:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' ng-model="form.id" disabled>
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class="left">
+                <i class="red">*</i>
+                <label class='control-label'>设备MAC:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' ng-model="form.mac">
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class="left">
+                <label class='control-label'>设备名称:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' ng-model="form.sbmc">
+              </div>
+            </div>
+            <div class='form-group serialNumber' ng-if="form.way=='edit'">
+              <div class="left">
+                <label class='control-label'>公司名称:</label>
+              </div>
+              <div class="right ">
+                <input class='form-control' type='text' ng-model="form.cpName" disabled>
+              </div>
+            </div>
+          </fieldset>
+          <div class='form-actions'>
+            <button class='btn btn-default' type='submit' ng-click="save()">保存</button>
+            <a class='btn' href='javascript:;' ng-click="form.show=false">取消</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="frame-wrap" ng-show="scan">
+  <div class="frame">
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <i class='icon-edit icon-large'></i> 我联科技
+        <a href="javascript:;" class="close" ng-click="scan=false">×</a>
+      </div>
+      <div class="panel-body">
+        <fieldset>
+          <legend>公司详细信息</legend>
+          <table class="scan-info">
+            <tbody>
+              <tr>
+                <td width="30%">产品类型</td>
+                <td width="70%">4</td>
+              </tr>
+              <tr>
+                <td>公司名称</td>
+                <td>22</td>
+              </tr>
+              <tr>
+                <td>公司地址</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>公司邮箱</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>公司电话</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>单位授权码</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>上下班时间</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>公司编号</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>公司账号</td>
+                <td>4</td>
+              </tr>
+            </tbody>
+          </table>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

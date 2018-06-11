@@ -1,0 +1,122 @@
+<app-header></app-header>
+<div id='wrapper'>
+  <sidebar></sidebar>
+  <sitemap></sitemap>
+  <!-- Content -->
+  <div id='content'>
+    <div class='panel panel-default grid'>
+      <div class='panel-heading'>
+        <i class='icon-file-text-alt'></i> 我联考勤客户部门信息
+      </div>
+      <div class='panel-body'>
+        <div class='row'>
+          <div class="col-md-2"></div>
+          <form class="col-md-8">
+            <!-- 接口非模糊查询 -->
+            <span>编号：</span>
+            <input class='form-control inline' type='text' ng-model="search.cpno">&emsp;
+            <!-- 接口不对 -->
+            <!-- <span>公司：</span> -->
+            <!-- <input class='form-control inline' type='text' ng-model="search.cp_name">&emsp; -->
+            <button class='btn btn-info' type='submit' ng-click="getDepartments(1)">查询</button>
+          </form>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>公司</th>
+              <th>部门名称</th>
+              <th>设备MAC</th>
+              <th>地址</th>
+              <th>电话</th>
+              <th>备注</th>
+              <th class='actions'>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="department in departments">
+              <td ng-bind="(pageCur-1)*10+$index+1"></td>
+              <td ng-bind="department.cpName"></td>
+              <td ng-bind="department.dept_name"></td>
+              <td ng-bind="department.ap_mac"></td>
+              <td ng-bind="department.dept_address"></td>
+              <td ng-bind="department.phone_no"></td>
+              <td ng-bind="department.remark"></td>
+              <td class='action'>
+                <a class='btn btn-success' href='javascript:;' ng-click="scan=true">
+                  <i class='icon-zoom-in'></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <page-list page-cur="pageCur" page-total="pageTotal" page-numbers="pageNumbers" request="getDepartments"></page-list>
+    </div>
+  </div>
+</div>
+<div class="frame-wrap" ng-show="scan">
+  <div class="frame">
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <i class='icon-edit icon-large'></i> 我联考勤
+        <a href="javascript:;" class="close" ng-click="scan=false">×</a>
+      </div>
+      <div class="panel-body">
+        <fieldset>
+          <legend>部门详细信息</legend>
+          <table class="scan-info">
+            <tbody>
+              <tr>
+                <td>ID</td>
+                <td>22</td>
+              </tr>
+              <tr>
+                <td>名称</td>
+                <td>22</td>
+              </tr>
+              <tr>
+                <td>设备MAC</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td width="30%">公司编号</td>
+                <td width="70%">4</td>
+              </tr>
+              <tr>
+                <td width="30%">公司名称</td>
+                <td width="70%">4</td>
+              </tr>
+              <tr>
+                <td>部门地址</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>部门邮箱</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>部门电话</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>部门备注</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>员工数量</td>
+                <td>
+                  <span>4</span>
+                  <a href="javascript:;">员工详情</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

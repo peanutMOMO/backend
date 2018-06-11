@@ -1,0 +1,52 @@
+﻿<div class='navbar navbar-default' id='navbar'>
+  <a class='navbar-brand home-logo' href='/dashboard'>
+    <img src="img/logo.jpg">
+    <span>北京我联科技有限公司</span>
+  </a>
+  <ul class='nav navbar-nav pull-right'>
+    <!-- <li class='dropdown message'>
+      <a class='dropdown-toggle' data-toggle='dropdown' href='javascript:;'>
+        <i class='icon-envelope'></i> 消息
+        <span class='badge'>5</span>
+        <b class='caret'></b>
+      </a>
+      <ul class='dropdown-menu'>
+        <li>
+          <a href='javascript:;'>新消息</a>
+        </li>
+        <li>
+          <a href='javascript:;'>收件箱</a>
+        </li>
+        <li>
+          <a href='javascript:;'>发件箱</a>
+        </li>
+        <li>
+          <a href='javascript:;'>垃圾箱</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href='#'>
+        <i class='icon-cog'></i> 设置
+      </a>
+    </li> -->
+    <li class='dropdown user'>
+      <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+        <span>欢迎，</span>
+        <i class='icon-user'></i>
+        <span ng-bind="username"></span>
+        <b class='caret'></b>
+      </a>
+      <ul class='dropdown-menu'>
+        <li>
+          <a href='javascript:;' ng-click="loginUser.edit=true">编辑</a>
+        </li>
+        <li class='divider'></li>
+        <li>
+          <a href="javascript:;" ng-click="logout()">退出</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <login-edit login-user="loginUser"></login-edit>
+</div>

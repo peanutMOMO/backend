@@ -1,0 +1,138 @@
+<app-header></app-header>
+<div id='wrapper'>
+  <sidebar></sidebar>
+  <sitemap></sitemap>
+  <!-- Content -->
+  <div id='content'>
+    <div class='panel panel-default grid'>
+      <div class='panel-heading'>
+        <i class='icon-file-text-alt'></i> 菜单管理
+      </div>
+      <div class='panel-body'>
+        <div class='row'>
+          <div class='col-md-9'>
+            <button class="btn btn-info" ng-click="openAdd()">添加菜单</button>
+          </div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class='table'>
+          <thead>
+            <tr>
+              <th width="10%">序号</th>
+              <th width="15%">名称</th>
+              <th width="20%">Icon</th>
+              <th width="20%">URL</th>
+              <th width="20%">分组</th>
+              <th class='actions' width="15%">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="menu in menus" unfold-submenu>
+              <td ng-bind="$index+1"></td>
+              <td ng-bind="menu.menuName"></td>
+              <td><i class="icon" ng-class="menu.icon"></i></td>
+              <td ng-bind="menu.menuUrl"></td>
+              <td ng-bind="menu.project_name"></td>
+              <td class='action'>
+                <a href='javascript:;' class='btn btn-success' ng-if="menu.subMenu.length>0" ng-click="toggleSub()">
+                  <i ng-class='{"icon-plus-sign-alt":!menu.subStatus,"icon-minus-sign-alt":menu.subStatus}'></i>
+                </a>
+                <a href='javascript:;' class='btn' ng-if="menu.subMenu.length==0" style="visibility:hidden;">
+                  <i class='icon-minus-sign-alt'></i>
+                </a>
+                <a href='javascript:;' class='btn btn-info' ng-click="openEdit(menu.menuId)"><i class='icon-edit'></i></a>
+                <a href="javascript:;" class="btn btn-danger" ng-click="delete(menu.menuId)"><i class="icon-trash"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="frame-wrap" ng-show="frame.show">
+  <div class="frame">
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <i class='icon-edit icon-large'></i> 菜单管理
+        <a href="javascript:;" class="close" ng-click="frame.show=false">×</a>
+      </div>
+      <div class='panel-body'>
+        <form>
+          <fieldset>
+            <legend>{{frame.title}}</legend>
+            <div class='form-group product-type'>
+              <div class="left">
+                <label class='control-label'>类型:</label>
+              </div>
+              <div class="right">
+                <label>
+                  <input type="radio" name="type" value="1" ng-model="form.type">
+                  <span>一级菜单</span>
+                </label>
+                <label>
+                  <input type="radio" name="type" value="2" ng-model="form.type">
+                  <span>二级菜单</span>
+                </label>
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class="left">
+                <label class='control-label'>名称:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' ng-model="form.name">
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class="left">
+                <label class='control-label'>URL:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' ng-model="form.url">
+              </div>
+            </div>
+            <div class='form-group' ng-show="form.type==1">
+              <div class="left">
+                <label class='control-label'>Icon:</label>
+              </div>
+              <div class="right">
+                <select class='form-control short' ng-model="form.icon">
+                  <option>icon-dashboard</option>
+                  <option>icon-file-text-alt</option>
+                  <option>icon-table</option>
+                  <option>icon-bug</option>
+                  <option>icon-cloud</option>
+                  <option>icon-flag</option>
+                </select>
+                <i class="big" ng-class="form.icon"></i>
+              </div>
+            </div>
+            <div class='form-group' ng-show="form.type==2">
+              <div class="left">
+                <label class='control-label'>父菜单:</label>
+              </div>
+              <div class="right">
+                <select class='form-control short' ng-options="menu.menuName for menu in menus" ng-model="form.parentMenu" auto-url></select>
+                <i class="big" ng-class="form.parentMenu.icon"></i>
+              </div>
+            </div>
+            <div class='form-group' ng-show="form.type==2">
+              <div class="left">
+                <label class='control-label'>分组:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' ng-model="form.group">
+              </div>
+            </div>
+          </fieldset>
+          <div class='form-actions'>
+            <button class='btn btn-default' type='submit' ng-click="save()">保存</button>
+            <a class='btn' href='javascript:;' ng-click="frame.show=false">取消</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="frame-wrap" ng-show="loginUser.edit">
+  <div class="frame">
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <i class='icon-edit icon-large'></i> 帐号管理
+        <a href="javascript:;" class="close" ng-click="loginUser.edit=false">×</a>
+      </div>
+      <div class='panel-body'>
+        <form>
+          <fieldset>
+            <legend>{{frame.title}}</legend>
+            <div class='form-group'>
+              <div class="left">
+                <i class="red">*</i>
+                <label class='control-label'>名称:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' ng-model="form.name">
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class="left">
+                <label class='control-label'>登录名:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' ng-model="form.login" disabled>
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class="left">
+                <label class='control-label'>密码:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='password' ng-model="form.password" placeholder="最少6个，最多16个字符">
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class="left">
+                <label class='control-label'>重复密码:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='password' ng-model="form.rePassword" >
+              </div>
+            </div>
+          </fieldset>
+          <div class='form-actions'>
+            <button class='btn btn-default' type='submit' ng-click="save()">保存</button>
+            <a class='btn' href='javascript:;' ng-click="loginUser.edit=false">取消</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

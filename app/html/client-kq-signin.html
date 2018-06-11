@@ -1,0 +1,142 @@
+<app-header></app-header>
+<div id='wrapper'>
+  <sidebar></sidebar>
+  <sitemap></sitemap>
+  <!-- Content -->
+  <div id='content'>
+    <div class='panel panel-default grid'>
+      <div class='panel-heading'>
+        <i class='icon-file-text-alt'></i> 我联考勤打卡信息
+      </div>
+      <div class='panel-body'>
+        <div class='row'>
+          <div class='col-md-3'></div>
+          <form class='col-md-9'>
+            <!-- 后台没有提供 -->
+            <!-- <span>公司：</span>
+            <input class='form-control inline' type='text' ng-model="search.cpName">&emsp;
+            <span>姓名：</span>
+            <input class='form-control inline' type='text' ng-model="search.uname">&emsp;
+            <button class='btn btn-info' type='submit' ng-click="getKqInfos(1)">查询</button> -->
+          </form>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class='table'>
+          <thead>
+            <tr>
+              <th width="4%">序号</th>
+              <th width="20%">公司</th>
+              <th width="10%">部门</th>
+              <th width="15%">姓名</th>
+              <th width="8%">签到时间</th>
+              <th width="8%">签退时间</th>
+              <th width="8%">外勤签到</th>
+              <th width="8%">外勤签退</th>
+              <th width="15%">日期</th>
+              <th class='actions' width="4%">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="kqInfo in kqInfos">
+              <td ng-bind="(pageCur-1)*10+$index+1"></td>
+              <td ng-bind="kqInfo.cpName"></td>
+              <td ng-bind="kqInfo.dpName"></td>
+              <td ng-bind="kqInfo.uname"></td>
+              <td ng-bind="convertTime(kqInfo.singin_time)"></td>
+              <td ng-bind="convertTime(kqInfo.singout_time)"></td>
+              <td ng-bind="convertTime(kqInfo.wsingin_time)"></td>
+              <td ng-bind="convertTime(kqInfo.wsingout_time)"></td>
+              <td ng-bind="convertDay(kqInfo.datatime)"></td>
+              <td class='action'>
+                <a class='btn btn-success' href='javascript:;' ng-click="scan=true">
+                  <i class='icon-zoom-in'></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <page-list page-cur="pageCur" page-total="pageTotal" page-numbers="pageNumbers" request="getKqInfos"></page-list>
+    </div>
+  </div>
+</div>
+<div class="frame-wrap" ng-show="scan">
+  <div class="frame">
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <i class='icon-edit icon-large'></i> 我联考勤
+        <a href="javascript:;" class="close" ng-click="scan=false">×</a>
+      </div>
+      <div class="panel-body">
+        <fieldset>
+          <legend>员工详细信息</legend>
+          <table class="scan-info">
+            <tbody>
+              <tr>
+                <td width="30%">ID</td>
+                <td width="70%">4</td>
+              </tr>
+              <tr>
+                <td>公司</td>
+                <td>22</td>
+              </tr>
+              <tr>
+                <td>部门</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>姓名</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>签到</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>迟到</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>签退</td>
+                <td>
+                  <span>4</span>
+                </td>
+              </tr>
+              <tr>
+                <td>早退</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>外勤签到</td>
+                <td>
+                  <span>4</span>
+                </td>
+              </tr>
+              <tr>
+                <td>外勤签到位置</td>
+                <td>
+                  <span>4</span>
+                  <a href="javascript:;">位置地图</a>
+                </td>
+              </tr>
+              <tr>
+                <td>外勤签退</td>
+                <td>
+                  <span>4</span>
+                </td>
+              </tr>
+              <tr>
+                <td>外勤签退位置</td>
+                <td>
+                  <span>4</span>
+                  <a href="javascript:;">位置地图</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

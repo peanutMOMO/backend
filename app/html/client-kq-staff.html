@@ -1,0 +1,105 @@
+<app-header></app-header>
+<div id='wrapper'>
+  <sidebar></sidebar>
+  <sitemap></sitemap>
+  <!-- Content -->
+  <div id='content'>
+    <div class='panel panel-default grid'>
+      <div class='panel-heading'>
+        <i class='icon-file-text-alt'></i> 我联考勤帐号信息
+      </div>
+      <div class='panel-body'>
+        <div class='row'>
+          <div class='col-md-3'></div>
+          <form class='col-md-9'>
+            <!-- 傻逼后台接口有问题 -->
+            <!-- <span>手机MAC：</span>
+            <input class='form-control inline' type='text' ng-model="search.mac">&emsp;
+            <span>姓名：</span>
+            <input class='form-control inline' type='text' ng-model="search.uname">&emsp;
+            <button class='btn btn-info' type='submit' ng-click="getStaffs(1)">查询</button> -->
+          </form>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>编号</th>
+              <th>手机MAC</th>
+              <th>姓名</th>
+              <th>性别</th>
+              <th class='actions'>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="staff in staffs">
+              <td ng-bind="(pageCur-1)*10+$index+1"></td>
+              <td ng-bind="staff.uno"></td>
+              <td ng-bind="staff.mac"></td>
+              <td ng-bind="staff.uname"></td>
+              <td ng-bind="staff.sex"></td>
+              <td class='action'>
+                <a class='btn btn-success' href='javascript:;' ng-click="scan=true">
+                  <i class='icon-zoom-in'></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <page-list page-cur="pageCur" page-total="pageTotal" page-numbers="pageNumbers" request="getStaffs"></page-list>
+    </div>
+  </div>
+</div>
+<div class="frame-wrap" ng-show="scan">
+  <div class="frame">
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <i class='icon-edit icon-large'></i> 我联考勤
+        <a href="javascript:;" class="close" ng-click="scan=false">×</a>
+      </div>
+      <div class="panel-body">
+        <fieldset>
+          <legend>员工详细信息</legend>
+          <table class="scan-info">
+            <tbody>
+              <tr>
+                <td width="30%">ID</td>
+                <td width="70%">4</td>
+              </tr>
+              <tr>
+                <td>姓名</td>
+                <td>22</td>
+              </tr>
+              <tr>
+                <td>性别</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>手机MAC</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>公司</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>部门</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>签到天数</td>
+                <td>
+                  <span>4</span>
+                  <a href="javascript:;">签到详情</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

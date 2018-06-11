@@ -1,0 +1,10 @@
+<section id="sidebar">
+  <ul id='dock'>
+    <li class="launcher" ng-repeat="menu in menus" ng-class="{'active':menu.menuUrl==path,'dropdown':menu.subMenu.length>0}">
+      <i ng-class="menu.icon"></i>
+      <a ng-href="{{menu.subMenu.length>0?'javascript:;':menu.menuUrl}}" ng-bind="menu.menuName"></a>
+      <ul ng-if="menu.subMenu.length>0" class="dropdown-menu" dropdown-list></ul>
+    </li>
+  </ul>
+  <div data-toggle='tooltip' id='beaker' title='Made by lab2023'></div>
+</section>

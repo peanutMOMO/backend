@@ -1,0 +1,306 @@
+<app-header></app-header>
+<div id='wrapper'>
+  <sidebar></sidebar>
+  <sitemap></sitemap>
+  <div id='content'>
+    <div class='panel panel-default grid'>
+      <div class='panel-heading'>
+        <i class='icon-file-text-alt'></i> 我联考勤帐号信息
+      </div>
+      <div class='panel-body'>
+        <div class='row'>
+          <div class="col-md-3">
+            <button class="btn btn-info" ng-click="openAdd()">添加帐号</button>
+          </div>
+          <form class="col-md-8">
+            <span>编号：</span>
+            <input class='form-control inline' type='text' ng-model="search.cpno">&emsp;
+            <span>公司：</span>
+            <input class='form-control inline' type='text' ng-model="search.cp_name">&emsp;
+            <span>地区：</span>
+            <select class='form-control inline' ng-options="areaCode.code as areaCode.area for areaCode in areaCodes" ng-model="search.cpno">
+              <option value="">所有地区</option>
+            </select>&emsp;
+            <button class='btn btn-info' type='submit' ng-click="getCompanys(1)">查询</button>
+          </form>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class='table'>
+          <thead>
+            <tr>
+              <th width="6%">序号</th>
+              <th width="10%">类型</th>
+              <th width="15%">编号</th>
+              <th width="30%">公司</th>
+              <th width="7%">地区</th>
+              <th width="10%">帐号</th>
+              <th width="7%">状态</th>
+              <th width="15%">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="company in companys">
+              <td ng-bind="(pageCur-1)*10+$index+1"></td>
+              <td ng-bind="company.type==1?'基础版':'标准版'"></td>
+              <td ng-bind="company.cpno"></td>
+              <td ng-bind="company.cp_name"></td>
+              <td ng-bind="getArea(company.cpno.substr(0,3))"></td>
+              <td ng-bind="company.account"></td>
+              <td ng-bind="company.zt==1?'启用':'停用'"></td>
+              <td class='action'>
+                <a class='btn btn-success' href='javascript:;' ng-click="openDetail(company.cpno)">
+                  <i class='icon-zoom-in'></i>
+                </a>
+                <a class='btn btn-info' href='javascript:;' ng-click="openEdit(company.cpno)">
+                  <i class='icon-edit'></i>
+                </a>
+                <a class='btn btn-danger' href='javascript:;' ng-click="delete(company.id)">
+                  <i class='icon-trash'></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <page-list page-cur="pageCur" page-total="pageTotal" page-numbers="pageNumbers" result-total="totalResult" request="getCompanys"></page-list>
+    </div>
+  </div>
+</div>
+<div class="frame-wrap" ng-show="form.show">
+  <div class="frame">
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <i class='icon-edit icon-large'></i> 我联考勤
+        <a href="javascript:;" class="close" ng-click="form.show=false">×</a>
+      </div>
+      <div class='panel-body'>
+        <form>
+          <fieldset>
+            <legend>{{form.title}}</legend>
+            <div class='form-group product-type'>
+              <div class="left">
+                <label class='control-label'>产品类型:</label>
+              </div>
+              <div class="right">
+                <label>
+                  <input type="radio" name="type" value="1" ng-model="form.type">
+                  <span>基础版</span>
+                </label>
+                <label>
+                  <input type="radio" name="type" value="2" ng-model="form.type">
+                  <span>标准版</span>
+                </label>
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class="left">
+                <i class="red">*</i>
+                <label class='control-label'>公司名称:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' ng-model="form.name">
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class="left">
+                <label class='control-label'>公司地址:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' ng-model="form.address">
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class="left">
+                <label class='control-label'>公司邮箱:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' ng-model="form.email">
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class="left">
+                <label class='control-label'>公司电话:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' ng-model="form.telephone">
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class="left">
+                <label class='control-label'>单位授权码:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' ng-model="form.auth">
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class="left">
+                <i class="red">*</i>
+                <label class='control-label'>上下班时间:</label>
+              </div>
+              <div class="right work-time">
+                <label>上班:</label>
+                <input type="text" class="form-control time-input" over-next ng-model="form.comeHour">
+                <span>:</span>
+                <input type="text" class="form-control time-input" ng-model="form.comeMinute">
+                <label>下班:</label>
+                <input type="text" class="form-control time-input" over-next ng-model="form.goHour">
+                <span>:</span>
+                <input type="text" class="form-control time-input" ng-model="form.goMinute">
+              </div>
+            </div>
+            <div class='form-group serialNumber' ng-if="form.way=='add'">
+              <div class="left">
+                <i class="red">*</i>
+                <label class='control-label'>公司编号:</label>
+              </div>
+              <div class="right">
+                <span>地区:</span>
+                <select class='form-control short' ng-options="areaCode.area for areaCode in areaCodes" ng-model="form.areaCode" ng-change="getMaxNo(form.areaCode.code)">
+                  <option value="">请选择地区</option>
+                </select>&emsp;
+                <span>区号:</span>
+                <input class='form-control' type='text' ng-model="form.areaCode.code" readonly>
+              </div>
+              <div class="clear-line"></div>
+              <div class="right">
+                <span>序号:</span>
+                <input class='form-control' type='number' ng-model="form.areaCode.serial">&emsp;
+                <span>编号:</span>
+                <input class='form-control' type='text' ng-value="form.areaCode.code+prefixInteger(form.areaCode.serial, 6)" readonly>
+              </div>
+            </div>
+            <div class='form-group' ng-if="form.way=='edit'">
+              <div class="left">
+                <i class="red">*</i>
+                <label class='control-label'>公司编号:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' placeholder="3位区号+6位序号" ng-model="form.cpno">
+              </div>
+            </div>
+            <div class='form-group '>
+              <div class="left">
+                <i class="red">*</i>
+                <label class='control-label'>公司账号:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' placeholder="3到15个字符" ng-model="form.usr">
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class="left">
+                <i class="red">*</i>
+                <label class='control-label'>登录密码:</label>
+              </div>
+              <div class="right">
+                <input class='form-control' type='text' placeholder="6到15个字符" ng-model="form.psw">
+              </div>
+            </div>
+            <div class='form-group product-type'>
+              <div class="left">
+                <label class='control-label'>启用:</label>
+              </div>
+              <div class="right">
+                <label>
+                  <input type='radio' name="zt" value="1" ng-model="form.zt">
+                  <span>是</span>
+                </label>
+                <label>
+                  <input type='radio' name="zt" value="2" ng-model="form.zt">
+                  <span>否</span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+          <div class='form-actions'>
+            <button class='btn btn-default' type='submit' ng-click="save()">保存</button>
+            <a class='btn' href='javascript:;' ng-click="form.show=false">取消</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="frame-wrap" ng-show="scan">
+  <div class="frame">
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <i class='icon-edit icon-large'></i> 我联考勤
+        <a href="javascript:;" class="close" ng-click="scan=false">×</a>
+      </div>
+      <div class="panel-body">
+        <fieldset>
+          <legend>公司详细信息</legend>
+          <table class="scan-info">
+            <tbody>
+              <tr>
+                <td width="30%">ID</td>
+                <td width="70%" ng-bind="company.id"></td>
+              </tr>
+              <tr>
+                <td>产品类型</td>
+                <td ng-bind="company.type==1?'基础版':'标准版'"></td>
+              </tr>
+              <tr>
+                <td>公司名称</td>
+                <td ng-bind="company.cp_name"></td>
+              </tr>
+              <tr>
+                <td>公司地址</td>
+                <td ng-bind="company.cp_address"></td>
+              </tr>
+              <tr>
+                <td>公司邮箱</td>
+                <td ng-bind="company.email"></td>
+              </tr>
+              <tr>
+                <td>公司电话</td>
+                <td ng-bind="company.phone_no"></td>
+              </tr>
+              <tr>
+                <td>单位授权码</td>
+                <td ng-bind="company.authcode"></td>
+              </tr>
+              <tr ng-if="company.type==1">
+                <td>上班时间</td>
+                <td ng-bind="company.work_time"></td>
+              </tr>
+              <tr ng-if="company.type==1">
+                <td>下班时间</td>
+                <td ng-bind="company.leave_time"></td>
+              </tr>
+              <tr>
+                <td>公司编号</td>
+                <td ng-bind="company.cpno"></td>
+              </tr>
+              <tr>
+                <td>公司账号</td>
+                <td ng-bind="company.account">4</td>
+              </tr>
+              <tr>
+                <td>设备数量</td>
+                <td>
+                  <a ng-href="/equipment/kq_device?cpno={{company.cpno}}" ng-bind="company.deviceCount"></a>（台）
+                </td>
+              </tr>
+              <tr>
+                <td>部门数量</td>
+                <td>
+                  <a href="/client/clkqdp?cpno={{company.cpno}}" ng-bind="company.deptCount"></a>（个）
+                </td>
+              </tr>
+              <tr>
+                <td>员工数量</td>
+                <td>
+                  <a href="/client/clkqst?cpno={{company.cpno}}" ng-bind="company.userCount"></a>（个）
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

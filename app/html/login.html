@@ -1,0 +1,34 @@
+﻿<div class="login-wrap">
+  <div class='wrapper'>
+    <div class='row'>
+      <div class='col-lg-12'>
+        <div class='brand text-center'>
+          <img src="img/logo.png" class="logo">
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-lg-12'>
+        <form>
+          <div class='form-group'>
+            <input class='form-control' ng-class="{'shake': usrErr}" autofocus='true' placeholder='帐号' type='text' ng-model="username" id="ailinkBackendUsername">
+          </div>
+          <div class='form-group'>
+            <input class='form-control' ng-class="{'shake': pswErr}" placeholder='密码' type='password' ng-model="password" id="ailinkBackendPassword">
+          </div>
+          <div class='form-group'>
+            <input class='form-control short' ng-class="{'shake': ckcErr}" placeholder='验证码' name="checkcode" type='password' ng-model="checkcode">
+            <img checkcode class="checkcode">
+          </div>
+          <div class="text-left">
+            <label class='checkbox'>
+              <input type='checkbox' ng-init="autoLogin=true" ng-model="autoLogin">
+              <span>自动登录</span>
+            </label>
+            <button class="btn btn-info login-btn" ng-click="login()">登录</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

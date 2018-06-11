@@ -1,0 +1,54 @@
+<app-header></app-header>
+<div id='wrapper'>
+  <sidebar></sidebar>
+  <sitemap></sitemap>
+  <div id='content'>
+    <div class='panel panel-default grid'>
+      <div class='panel-heading'>
+        <i class='icon-file-text-alt'></i> 我联无限环境信号采集点
+      </div>
+      <div class='panel-body'>
+        <div class='row'>
+          <div class="col-md-3"></div>
+          <form class="col-md-8">
+            <span>公司：</span>
+            <input class='form-control inline' type='text' ng-model="search.cp_name">&emsp;
+            <button class='btn btn-info' type='submit' ng-click="getCompanys(1)">查询</button>
+          </form>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class='table'>
+          <thead>
+            <tr>
+              <th width="6%">序号</th>
+              <th width="15%">编号</th>
+              <th width="30%">公司</th>
+              <th width="30%">路径数量</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="company in companys">
+              <td ng-bind="(pageCur-1)*10+$index+1"></td>
+              <td ng-bind="company.cpno"></td>
+              <td ng-bind="company.cp_name"></td>
+              <td>
+                <a href="javascript:;" ng-click="openEdit(company.id)">18</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <page-list page-cur="pageCur" page-total="pageTotal" page-numbers="pageNumbers" result-total="totalResult" request="getCompanys"></page-list>
+    </div>
+  </div>
+</div>
+<div class="path-edit-wrap" ng-show="showEdit" path-collect>
+  <div id="pathEditWrap">
+    <img ng-src="{{editSrc}}" draggable="false">
+    <canvas id="canvas">您的浏览器不好使</canvas>
+  </div>
+  <input type="button" value="退格" class="btn" id="back">
+  <input type="button" value="保存" class="btn" id="result">
+  <input type="button" value="退出" class="btn exit" ng-click="showEdit=false">
+</div>

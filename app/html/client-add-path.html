@@ -1,0 +1,43 @@
+<app-header></app-header>
+<div id='wrapper'>
+  <sidebar></sidebar>
+  <sitemap></sitemap>
+  <div id='content'>
+    <div class='panel panel-default grid'>
+      <div class='panel-heading'>
+        <i class='icon-file-text-alt'></i> 我联无限环境信号采集点
+      </div>
+      <div class='panel-body'>
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-9">
+            <h4>使用说明:</h4>
+            <p>
+              选择要添加路径的店铺的室内地图，填入店铺ID，即可设置采集路径
+              <br> 依次点击地图，坐标点可拖动，路径规划完成保存即可。
+              <br>
+              <small>每一次保存都会覆盖之前的结果。</small>
+            </p>
+          </div>
+        </div>
+        <div class='row'>
+          <div class="col-md-3"></div>
+          <form class="col-md-8">
+            <input class='form-control inline' type="file" style="diaplay: inline;width:auto;" id="imgInput">
+            <input class='form-control inline' type="text" placeholder="请输入店铺ID" ng-model="storeId">
+            <button class='btn btn-info' type='submit' path-collect>设置采集路径</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="path-edit-wrap" ng-show="showEdit">
+  <div id="pathEditWrap">
+    <img ng-src="{{editSrc}}" draggable="false">
+    <canvas id="canvas">您的浏览器不好使</canvas>
+  </div>
+  <input type="button" value="退格" class="btn" id="back">
+  <input type="button" value="保存" class="btn" id="result">
+  <input type="button" value="退出" class="btn exit" ng-click="reload()">
+</div>
